@@ -1,0 +1,6 @@
+test_file\.py
+notebooks/\.ipynb_checkpoints/
+*.npy
+DATA/
+__pycache__/
+*pycache*/
