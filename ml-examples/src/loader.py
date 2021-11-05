@@ -75,6 +75,7 @@ class CumuloDataset(Dataset):
             raise NotImplementedError("only .nc and .npz extensions are supported")
 
         self.file_paths = glob.glob(os.path.join(root_dir, "*." + ext))
+        #print(self.file_paths)
         
         if len(self.file_paths) == 0:
             raise FileNotFoundError("no {} files in {}".format(ext, root_dir))
@@ -87,7 +88,6 @@ class CumuloDataset(Dataset):
         self.tiler = tiler
 
     def __len__(self):
-
         return len(self.file_paths)
 
     def __getitem__(self, info):
@@ -129,10 +129,11 @@ class CumuloDataset(Dataset):
 if __name__ == "__main__":  
 
     # try loading precomputed 3x3 tiles
-    load_path = "../DATA/npz/label/"
+    load_path = "/scratch/pvu3/Indep Study/netcdf/cumulo-tiles/npz/label"
 
     dataset = CumuloDataset(load_path, ext="npz")
 
     for instance in dataset:
 
         filename, radiances, properties, rois, labels = instance
+        print(instance)

@@ -422,7 +422,7 @@ def test(model, epoch, testloader, viz, test_log, use_cuda=False, flag="validati
 
         _, predicted = torch.max(logits.data, 1)
 
-        conf_matrix += confusion_matrix(labels.data.cpu().numpy(), predicted.cpu().numpy(), np.arange(nb_classes))
+        conf_matrix += confusion_matrix(labels.data.cpu().numpy(), predicted.cpu().numpy(), labels=np.arange(nb_classes))
 
         test_loss += loss.item()
         test_rec_err += (inputs - x_re).abs().sum().item()
