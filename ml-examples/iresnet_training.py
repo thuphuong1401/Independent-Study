@@ -26,7 +26,7 @@ viz = visdom.Visdom(port=port, server="http://localhost")
 assert viz.check_connection(), "Could not connect to visdom"
 
 
-nb_epochs = 2
+nb_epochs = 10
 t_size = 3
 nb_classes = 8
 batch_size = 256 # number of tiles per batch 

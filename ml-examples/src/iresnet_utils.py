@@ -427,6 +427,7 @@ def test(model, epoch, testloader, viz, test_log, use_cuda=False, flag="validati
         test_loss += loss.item()
         test_rec_err += (inputs - x_re).abs().sum().item()
 
+
         del logpz, trace, logpx, loss, mean_entropy, inputs, x_re, labels, predicted
 
     line_plot(viz, flag + " recons err", epoch, test_rec_err / nb_tiles)
@@ -440,7 +441,7 @@ def test(model, epoch, testloader, viz, test_log, use_cuda=False, flag="validati
     line_plot_mean(viz, flag + " f1", epoch, f1_per_class)
 
     # file logging
-    log_dict = {"recons err": test_rec_err / nb_tiles, "epoch": epoch, "accuracy per class": accuracy_per_class.tolist(), "f1 per class": f1_per_class.tolist()}
+    log_dict = {"recons err": test_rec_err / nb_tiles, "test_rec_err": test_rec_err, "epoch": epoch, "accuracy per class": accuracy_per_class.tolist(), "f1 per class": f1_per_class.tolist()}
     test_log.write("{}\n".format(json.dumps(log_dict)))
     test_log.flush()
 
